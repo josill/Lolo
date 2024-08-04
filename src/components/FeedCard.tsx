@@ -1,4 +1,5 @@
 import truncateText from "@/utils/truncateText";
+import Link from "next/link";
 import React from "react";
 
 interface FeedCardProps {
@@ -19,13 +20,13 @@ function FeedCard({ feed, onEdit, onDelete }: FeedCardProps) {
           <strong className="block text-lg font-semibold">
             {truncateText(feed.name, 50)}
           </strong>
-          <a
+          <Link
             href={feed.link}
             target="_blank"
             className="text-blue-500 hover:underline"
           >
             {truncateText(feed.link, 75)}
-          </a>
+          </Link>
         </div>
       </div>
       <div className="flex items-center space-x-2">

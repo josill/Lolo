@@ -109,7 +109,7 @@ export default function Home() {
     <div>
       <div className="p-4">
         <div className="flex items-center justify-between mb-4">
-          <h1 className="text-xl font-semibold">Today's cateogries:</h1>
+          <h1 className="text-xl font-semibold">Toda&apos;s cateogries:</h1>
         </div>
         <div className="flex flex-wrap justify-start gap-2">
           {categories.map((category, index) => (

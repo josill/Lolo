@@ -1,29 +1,30 @@
+import Link from "next/link";
 import React from "react";
 
 const NavBar = () => {
   return (
     <nav className="bg-gradient-to-r from-blue-500 to-teal-500 p-4 shadow-lg">
       <div className="container mx-auto flex justify-between items-center">
-        <a className="text-white text-3xl font-extrabold" href="/">
+        <Link className="text-white text-3xl font-extrabold" href="/">
           Lolo
-        </a>
+        </Link>
         <div>
           <ul className="flex space-x-6">
             <li>
-              <a
+              <Link
                 href="/"
                 className="text-white hover:text-gray-100 font-medium transition duration-300 ease-in-out"
               >
                 Posts
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href="/feeds"
                 className="text-white hover:text-gray-100 font-medium transition duration-300 ease-in-out"
               >
                 Feeds
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

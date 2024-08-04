@@ -2,6 +2,7 @@ import truncateText from "@/utils/truncateText";
 import formatDate from "@/utils/formatDate";
 import { useRouter } from "next/router";
 import React from "react";
+import Link from "next/link";
 
 interface PostProps {
   post: Post;
@@ -12,7 +13,7 @@ function Post({ post, color }: PostProps) {
   const encodedLink = encodeURIComponent(post.link);
 
   return (
-    <a
+    <Link
       key={post.link}
       className="rounded-lg shadow-lg cursor-pointer transition-transform transform hover:scale-105"
       href={`/posts/${encodedLink}`}
@@ -50,7 +51,7 @@ function Post({ post, color }: PostProps) {
           </p>
         )}
       </div>
-    </a>
+    </Link>
   );
 }
 
