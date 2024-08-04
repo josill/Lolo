@@ -9,9 +9,9 @@ export default async function handler(
     if (req.method !== "GET") {
       return res.status(405).json({ error: "Method Not Allowed" });
     }
-
-    const urls = (req.query.urls as string) || "";
-    const urlArray = urls.split(",");
+    const urlArray = Array.isArray(req.query.urls)
+      ? req.query.urls
+      : [req.query.urls as string];
 
     if (urlArray.length === 0) {
       return res

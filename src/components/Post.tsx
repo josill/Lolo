@@ -1,6 +1,5 @@
 import truncateText from "@/utils/truncateText";
 import formatDate from "@/utils/formatDate";
-import { useRouter } from "next/router";
 import React from "react";
 import Link from "next/link";
 
@@ -38,11 +37,7 @@ function Post({ post, color }: PostProps) {
             className={`rounded-full h-4 w-4`}
             style={{ backgroundColor: color }}
           ></div>
-          <p>
-            {/* {post.pubDate.split(" ")[1]}.{post.pubDate.split(" ")[2]}{" "}
-            {post.pubDate.split(" ")[3]} */}
-            {formatDate(post.pubDate)}
-          </p>
+          <p>{formatDate(post.pubDate)}</p>
         </div>
         {post.author && (
           <p>

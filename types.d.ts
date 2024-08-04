@@ -12,7 +12,7 @@ interface Post {
     width?: string;
     height?: string;
   };
-  source: {
+  source?: {
     _: string;
     url: string;
   };

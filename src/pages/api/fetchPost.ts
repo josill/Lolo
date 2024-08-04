@@ -18,7 +18,6 @@ const fetchCleanArticleContent = async (url: string): Promise<string> => {
   }
 
   const data = await response.json();
-  console.log("data", JSON.stringify(data));
   return data.content;
 };
 

@@ -1,14 +1,17 @@
 const extractUniqueCategories = (items: Post[]): string[] => {
   const categoriesSet = new Set<string>();
 
-  items.forEach((item) => {
-    if (item.category) {
-      item.category.forEach((cat) => {
-        categoriesSet.add(cat._);
-      });
-    }
-  });
-
+  try {
+    items.forEach((item) => {
+      if (item.category) {
+        item.category.forEach((cat) => {
+          categoriesSet.add(cat._);
+        });
+      }
+    });
+  } catch (error) {
+    console.error("Error extracting unique categories:", error);
+  }
   return Array.from(categoriesSet);
 };
 

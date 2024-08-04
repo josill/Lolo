@@ -3,24 +3,11 @@ import { useQuery } from "@tanstack/react-query";
 import ErrorMessage from "@/components/Error";
 import Loading from "@/components/Loading";
 import styles from "@/styles/post.module.css";
+import fetchContent from "@/utils/fetchContent";
 
 export default function PostDetail() {
   const router = useRouter();
   const { link } = router.query;
-
-  const fetchContent = async (link: string) => {
-    try {
-      const res = await fetch(`/api/fetchPost?url=${encodeURIComponent(link)}`);
-      if (!res.ok) throw new Error("Network response was not ok");
-
-      const data = await res.json();
-      console.log(data);
-      return data;
-    } catch (error) {
-      console.error("Error fetching post:", error);
-      return undefined;
-    }
-  };
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ["post", link],

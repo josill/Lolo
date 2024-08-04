@@ -1,5 +1,6 @@
 import EditFeedCard from "@/components/EditFeedCard";
 import Feed from "@/components/Feed";
+import fetchPosts from "@/utils/fetchPosts";
 import React, { useEffect, useState } from "react";
 
 function Feeds() {
@@ -8,7 +9,7 @@ function Feeds() {
   const [newFeed, setNewFeed] = useState<Feed>({
     name: "",
     link: "",
-    color: "",
+    color: "#000000",
   });
 
   useEffect(() => {
@@ -16,15 +17,26 @@ function Feeds() {
     setFeeds(savedFeeds);
   }, []);
 
-  const addFeed = (newFeed: Feed) => {
-    if (feeds.find((feed) => feed.link === newFeed.link)) {
-      alert("Feed already exists");
-      return;
+  const addFeed = async (newFeed: Feed): Promise<boolean> => {
+    const res = await fetchPosts([newFeed.link]);
+    if (!res) {
+      alert("Invalid feed link");
+      return false;
+    }
+
+    if (
+      feeds.find(
+        (feed) => feed.link === newFeed.link || feed.color === newFeed.color
+      )
+    ) {
+      alert("Feed with same color or link already exists");
+      return false;
     }
 
     const updatedFeeds = [...feeds, newFeed];
     setFeeds(updatedFeeds);
     localStorage.setItem("feeds", JSON.stringify(updatedFeeds));
+    return true;
   };
 
   const editFeed = (originalLink: string, editedFeed: Feed) => {
@@ -44,6 +56,18 @@ function Feeds() {
     localStorage.setItem("feeds", JSON.stringify(updatedFeeds));
   };
 
+  const handleSave = async () => {
+    const success = await addFeed(newFeed);
+    if (!success) return;
+    setFeedFormOpen(false);
+    setNewFeed({ name: "", link: "", color: "" });
+  };
+
+  const handleCancel = () => {
+    setFeedFormOpen(false);
+    setNewFeed({ name: "", link: "", color: "" });
+  };
+
   return (
     <div className="px-8">
       <div className="flex items-center justify-between my-8">
@@ -61,15 +85,8 @@ function Feeds() {
         <EditFeedCard
           feed={newFeed}
           setFeed={setNewFeed}
-          onSave={() => {
-            addFeed(newFeed);
-            setFeedFormOpen(false);
-            setNewFeed({ name: "", link: "", color: "" });
-          }}
-          onCancel={() => {
-            setFeedFormOpen(false);
-            setNewFeed({ name: "", link: "", color: "" });
-          }}
+          onSave={handleSave}
+          onCancel={handleCancel}
         />
       )}
 
