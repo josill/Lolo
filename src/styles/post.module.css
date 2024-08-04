@@ -1,0 +1,49 @@
+/* PostDetail.module.css */
+
+.content h1, .content h2, .content h3, .content h4, .content h5, .content h6 {
+  margin-bottom: 1rem;
+}
+
+.content h1 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.content h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.content h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.content h4 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.content h5 {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.content h6 {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.content p {
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.content a {
+  color: blue;
+  text-decoration: underline;
+}
+
+.content a:hover {
+  text-decoration: underline;
+}
